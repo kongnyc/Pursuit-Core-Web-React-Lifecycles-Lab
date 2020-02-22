@@ -2,21 +2,32 @@ import React from 'react'
 
 class Form extends React.Component{
     state={
-        input: "place enter to do list"
+        inputText: "do to list 0",
+        list:""
     }
 
 
     handleSubmit=(e)=>{
-        e.preventDefault()
-        console.log("hell")
+        e.preventDefault();
+        
+        this.setState({list: e.target.elements[0].value})
+        // console.log({
+        //     list: e.target.elements[0].value,
+        // });
+    }
+
+    componentDidMount(){
+
     }
 
     render(){
         return(
             <>
             <form className="form" onSubmit={this.handleSubmit}>
-            <input placeholder="enter a todo"/>
+            <input name="inputText" placeholder="enter a todo"/>
             </form>
+            {/* {this.state.inputText} */}
+            {this.state.list}
         </>
 
         )
