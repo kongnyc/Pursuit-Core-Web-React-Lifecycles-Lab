@@ -9,7 +9,7 @@ export class AddTodo extends Component {
 handleChange=(e)=>{
     this.setState({input:e.target.value})
 }
-    
+
 handleSubmit=(e)=>{
     e.preventDefault();
     this.props.addTodo(this.state.input)
