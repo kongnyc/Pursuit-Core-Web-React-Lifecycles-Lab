@@ -3,13 +3,13 @@ import React, { Component } from 'react'
 export class TodoItem extends Component {
 
     render() {
-        let {id,title}=this.props.item
+        let {title}=this.props.item
         return (
             <div>
                 <p>
                 {title}
                 {" "}
-                <button onClick={this.props.completeBtn.bind(this,id)}>del</button>
+                <button onClick={this.props.delBtn.bind(this,title)}>x</button>
                 </p>
             </div>
         )

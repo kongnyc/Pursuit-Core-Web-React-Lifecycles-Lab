@@ -1,5 +1,9 @@
 import React from 'react';
+import { ToastContainer,toast } from "react-toastify";
+
 import Todos from "./components/Todos";
+import AddTodo from './components/addTodo';
+
 import './App.css';
 
 
@@ -7,41 +11,40 @@ class App extends React.Component {
   state= {
     todos:[
       {
-        id:1,
-        title: "buy milk",
-        complete: false
+        title: "buy milk"
       },
       {
-        id:2,
-        title: "buy cow",
-        complete: false
+        title: "buy cow"
       },
       {
-        id:3,
-        title: "meeting with boss",
-        complete: false
+        title: "meeting with boss"
       },
     ]
 
-  }
+  };
 
-  handleComplete =(id)=>{
-    
-    this.setState({todos:this.state.todos.map(todo=>{
-      // debugger
-      if(todo.id===id){
-        todo.complete = !todo.complete
-      }
-      return todo
-    })})
-    // debugger
+  notify = () => toast(
+    "deleting"
+    );
+
+
+  handleDel =(title)=>{
+    this.setState({todos:[...this.state.todos.filter(todo=>
+      todo.title!==title)] })
+  }
+  addTodo=(input)=>{
+    this.setState({todos:[...this.state.todos, {title:input}]})
   }
 
   render(){
+    // console.clear()
     console.log(this.state)
+
     return (
       <div className="App">
-      <Todos todosList={this.state} completeBtn={this.handleComplete}/>
+      <AddTodo addTodo={this.addTodo}/>
+      <Todos todosList={this.state} delBtn={this.handleDel}/>
+      <ToastContainer />
       </div>
     );
 
