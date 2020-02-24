@@ -1,5 +1,6 @@
 import React from 'react';
 import { ToastContainer,toast } from "react-toastify";
+import 'react-toastify/dist/ReactToastify.css'
 
 import Todos from "./components/Todos";
 import AddTodo from './components/addTodo';
@@ -23,14 +24,21 @@ class App extends React.Component {
 
   };
 
-  notify = () => toast(
-    "deleting"
-    );
+  // notify = (e) => toast(
+  //   "deleting"
+  //   );
 
 
   handleDel =(title)=>{
-    this.setState({todos:[...this.state.todos.filter(todo=>
-      todo.title!==title)] })
+    toast("deleting "+title)
+    setInterval(()=>{
+      this.setState(
+        {todos:[...this.state.todos.filter(todo=>
+        todo.title!==title)],}
+        )
+    },5000
+
+    )
   }
   addTodo=(input)=>{
     this.setState({todos:[...this.state.todos, {title:input}]})
@@ -44,7 +52,7 @@ class App extends React.Component {
       <div className="App">
       <AddTodo addTodo={this.addTodo}/>
       <Todos todosList={this.state} delBtn={this.handleDel}/>
-      <ToastContainer />
+      <ToastContainer/>
       </div>
     );
 
