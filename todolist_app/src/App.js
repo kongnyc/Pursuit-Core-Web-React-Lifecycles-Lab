@@ -10,35 +10,22 @@ import './App.css';
 
 class App extends React.Component {
   state= {
-    todos:[
-      {
-        title: "buy milk"
-      },
-      {
-        title: "buy cow"
-      },
-      {
-        title: "meeting with boss"
-      },
-    ]
+    todos:[]
 
   };
 
-  // notify = (e) => toast(
-  //   "deleting"
-  //   );
-
-
   handleDel =(title)=>{
-    toast("deleting "+title)
-    setInterval(()=>{
+    toast("deleting "+title);
+
+    let deleting =setInterval(()=>{
       this.setState(
         {todos:[...this.state.todos.filter(todo=>
-        todo.title!==title)],}
-        )
-    },5000
+          todo.title!==title)],}
+          )
+        },5000)
+        
+    // toast.onChange(()=>(clearInterval(deleting)))
 
-    )
   }
   addTodo=(input)=>{
     this.setState({todos:[...this.state.todos, {title:input}]})
@@ -50,6 +37,7 @@ class App extends React.Component {
 
     return (
       <div className="App">
+      <h1>Todos List</h1>
       <AddTodo addTodo={this.addTodo}/>
       <Todos todosList={this.state} delBtn={this.handleDel}/>
       <ToastContainer/>
